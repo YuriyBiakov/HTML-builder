@@ -98,13 +98,16 @@ async function replaceTemplates() {
         forReadStream.on('data', (forDataPart) => (forData += forDataPart));
         forReadStream.on('end', () => {
             teamplateData = teamplateData.replace(currentEl, forData);
+
+            if (i === sectionsArray.length - 1) {
+                fs.promises.appendFile(projectHTMLSrc, teamplateData, (err) => {
+                    if (err) throw console.log('fsappendFile Error!', err);
+                });
+            }
         })
     }
     });
     readStream.on('error', (error) => console.log('Error', error.message));
-    await fs.promises.appendFile(projectHTMLSrc, teamplateData, (err) => {
-        if (err) throw console.log('fsappendFile Error!', err);
-    });
 }
 
 async function init() {
