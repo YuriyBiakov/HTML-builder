@@ -1,11 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 const copiedFolderPath = './04-copy-directory/files';
-const targetFolderpath = './04-copy-directory/files-copy';
+const targetFolderPath = './04-copy-directory/files-copy';
 const fsPromises = fs.promises; 
 
 async function copyDir(outputFolderSrc, targetSrc) {
-    createDir(targetSrc);
+    const folder = await createDir(targetSrc);
 
     fs.readdir(outputFolderSrc, {withFileTypes: true}, (err, files) => {
         if (err) console.log('fs.reddir ERROR! ', err);
@@ -31,5 +31,5 @@ async function createDir(newFolderPath) {
     fsPromises.mkdir(newFolderPath, { recursive: true });
 }
 
-copyDir(copiedFolderPath, targetFolderpath);
+copyDir(copiedFolderPath, targetFolderPath);
 
