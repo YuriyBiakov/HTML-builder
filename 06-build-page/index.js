@@ -100,12 +100,11 @@ async function replaceTemplates() {
             teamplateData = teamplateData.replace(currentEl, forData);
         })
     }
-    console.log('103 htmlData is ', teamplateData);
     });
+    readStream.on('error', (error) => console.log('Error', error.message));
     await fs.promises.appendFile(projectHTMLSrc, teamplateData, (err) => {
         if (err) throw console.log('fsappendFile Error!', err);
     });
-    readStream.on('error', (error) => console.log('Error', error.message));
 }
 
 async function init() {
@@ -118,3 +117,14 @@ async function init() {
 
 
 init();
+
+// function one() {
+//     return new Promise(resolve => {
+//       resolve(console.log('first function'))
+//     })
+//   }
+//   function two() {
+//     console.log('hello world')
+//   }
+  
+//   one().=> two())
