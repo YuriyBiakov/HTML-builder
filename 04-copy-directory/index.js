@@ -29,12 +29,6 @@ async function copyDir(outputFolderSrc, targetSrc) {
 }
 async function createDir(newFolderPath) {
     fsPromises.mkdir(newFolderPath, { recursive: true });
-    // try {
-    //     fsPromises.mkdir(targetFolderpath, { recursive: false })
-    //  } catch (err) {
-    //     console.log('fsPromises.mkdir ERROR! ', err);
-    // }
-    // NOTE: doesn't work! Doesn't print error message/ WHY? 
 }
 
 copyDir(copiedFolderPath, targetFolderpath);
