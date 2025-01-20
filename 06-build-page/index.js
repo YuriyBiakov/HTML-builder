@@ -114,20 +114,11 @@ async function init() {
     const folder = await createDir(projectPath);
     const styles = await mergeStyles(outputStylesSrc, styleBundleSrc);
     const assets = await copyDir(outputAssetsSrc, projectAssetsSrc);
-    // const indexFile = await copyFile(templatePath, projectHTMLSrc);
     const replace = await replaceTemplates();
 }
 
 
-init();
 
-// function one() {
-//     return new Promise(resolve => {
-//       resolve(console.log('first function'))
-//     })
-//   }
-//   function two() {
-//     console.log('hello world')
-//   }
-  
-//   one().=> two())
+const deleteFunc = fs.rm(projectPath, {recursive: true}, () => {
+    init();
+});
